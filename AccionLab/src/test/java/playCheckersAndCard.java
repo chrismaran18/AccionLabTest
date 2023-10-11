@@ -3,10 +3,7 @@ import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-
 import static io.restassured.RestAssured.given;
-
 
 public class playCheckersAndCard extends BaseTest {
 public static String deckID;
@@ -21,6 +18,15 @@ public static String deckID;
         System.out.println("```````````Checkers Game Completed`````````````");
         System.out.println("_________________________________________________");
     }
+    
+    @Test(priority = 1)
+    public static void deckCardsTest(){
+        System.out.println("```````````Deck of Card Game Started`````````````");
+        deckOfCards();
+        shuffleCards();
+        System.out.println("```````````Deck of Card Game Completed`````````````");
+    }
+
     public static void myMove() throws InterruptedException {
 
         confirmPageStability("confirmed that the site is up & running... its ready to play!");
@@ -92,14 +98,7 @@ public static String deckID;
         */
     }
 
-    @Test(priority = 1)
-    public static void deckCardsTest(){
-        System.out.println("```````````Deck of Card Game Started`````````````");
-        deckOfCards();
-        shuffleCards();
-        System.out.println("```````````Deck of Card Game Completed`````````````");
-    }
-
+    
     public static void deckOfCards(){
         Response response= given()
                 .pathParams("myDeck", "deck/new")
